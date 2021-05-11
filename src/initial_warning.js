@@ -1,5 +1,5 @@
 Hooks.once('ready', async function () {
-    if (game.settings.get("automated-jb2a-animations","runonlyonce") == false) {
+    if (game.settings.get("autoanimations","runonlyonce") == false) {
         let d = new Dialog({
             title: "Module Activated !",
             content: `<div style="text-align: justify;"><h2>Welcome to the Automated Animation DnD5e Module</h2><p>

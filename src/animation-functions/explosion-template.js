@@ -95,7 +95,7 @@ async function explodeTemplate(handler) {
             divisor = 10;
             break;
     }
-    let globalDelay = game.settings.get("automated-jb2a-animations", "globaldelay");
+    let globalDelay = game.settings.get("autoanimations", "globaldelay");
     await wait(globalDelay);
 
     async function cast() {
@@ -161,7 +161,7 @@ async function explodeTemplate(handler) {
                     }
                 }
             }];
-        if (game.settings.get("automated-jb2a-animations", "tmfx")) {
+        if (game.settings.get("autoanimations", "tmfx")) {
             await wait(400);
             TokenMagic.addUpdateFiltersOnTargeted(shockWave);
             //await wait(2500);

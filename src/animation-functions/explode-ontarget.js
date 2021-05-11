@@ -57,7 +57,7 @@ async function explodeOnTarget(handler) {
     }
 
     let divisor = (1000 * (1/(handler.animExRadius)));
-    let globalDelay = game.settings.get("automated-jb2a-animations", "globaldelay");
+    let globalDelay = game.settings.get("autoanimations", "globaldelay");
     await wait(globalDelay);
 
     async function cast() {
