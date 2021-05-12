@@ -171,6 +171,10 @@ async function explodeTemplate(handler) {
         }
     }
     cast();
+    if (handler.audioEnabled) {
+        await wait(handler.audioDelay);
+        AudioHelper.play({ src: handler.audioItem, volume: handler.audioVolume, autoplay: true, loop: false }, true);
+    }
 }
 
 export default explodeTemplate;

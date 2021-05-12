@@ -66,6 +66,10 @@ async function meleeExplosion(handler, target) {
             SpellAnimation(loops)        
     }
     cast();
+    if (handler.audioExEnabled) {
+        await wait(handler.audioExDelay);
+        AudioHelper.play({ src: handler.audioExplosion, volume: handler.audioExVolume, autoplay: true, loop: false }, true);
+    }
 }
 
 export default meleeExplosion;

@@ -30,6 +30,10 @@ export class AnimateItem {
         this.audioItem = this.data.audioItem;
         this.audioDelay = this.data.audioDelay;
         this.audioVolume = this.data.audioVolume;
+        this.audioExplodeEnabled = this.data.audioExplodeEnabled;
+        this.audioExplosion = this.data.audioExplosion;
+        this.audioExDelay = this.data.audioExDelay;
+        this.audioExVolume = this.data.audioExVolume
         //this.flagObject = Object.assign({}, this.data);
     }
 
@@ -57,6 +61,10 @@ export class AnimateItem {
             audioItem: ``,
             audioDelay: 0,
             audioVolume: 0.5,
+            audioExplodeEnabled: false,
+            audioExplosion: ``,
+            audioExDelay: 0,
+            audioExVolume: 0.5,
             //itemName = ``,
             //animTypeVar = ``,
         }
@@ -442,6 +450,19 @@ export class AnimateItem {
     get volumeAudio() {
         return this.audioVolume;
     }
+
+    get newExAudio() {
+        return this.audioExplosion;
+    }
+
+    get delayExAudio() {
+        return this.audioExDelay;
+    }
+
+    get volumeExAudio() {
+        return this.audioExVolume;
+    }
+
     /*
     changeFlag(scope, key, value){
         setFlag(scope, key, value)

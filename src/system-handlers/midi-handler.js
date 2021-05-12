@@ -32,9 +32,14 @@ export default class MidiHandler {
         this._hmAnim = this._flags.hmAnim ?? "";
         this._uaStrikeType = this._flags.uaStrikeType ?? "";
         this._teleDist = this._flags.teleDist ?? "";
+        this._enableAudio = this._flags.enableAudio ?? false;
         this._audioItem = this._flags.audioItem ?? "";
         this._audioDelay = this._flags.audioDelay ?? 0;
         this._audioVolume = this._flags.audioVolume ?? 0.5;
+        this._audioExplodeEnabled = this._flags.audioExplodeEnabled ?? false;
+        this._audioExplosion = this._flags.audioExplosion ?? "";
+        this._audioExDelay = this._flags.audioExDelay ?? 0;
+        this._audioExVolume = this._flags.audioExVolume ?? 0.5;
 
         this._checkSave = Array.from(workflow.saves);
         this._savesId = Array.from(this._checkSave.filter(actor => actor.id).map(actor => actor.id));
@@ -224,6 +229,10 @@ export default class MidiHandler {
         return this._teleDist;
     }
 
+    get audioEnabled() {
+        return this._enableAudio;
+    }
+
     get audioItem() {
         return this._audioItem;
     }
@@ -234,6 +243,22 @@ export default class MidiHandler {
 
     get audioVolume() {
         return this._audioVolume;
+    }
+
+    get audioExEnabled() {
+        return this._audioExplodeEnabled;
+    }
+
+    get audioExplosion() {
+        return this._audioExplosion;
+    }
+
+    get audioExDelay() {
+        return this._audioExDelay;
+    }
+
+    get audioExVolume() {
+        return this._audioExVolume;
     }
 
     getDistanceTo(target) {

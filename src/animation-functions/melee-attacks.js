@@ -187,31 +187,31 @@ async function meleeWeapons(handler) {
     let fireColor = TMFXCOLORS[color]();
 
     let burn =
-    [{
-        filterType: "xfire",
-        filterId: "meleeBurn",
-        autoDestroy: true,
-        time: 0,
-        color: fireColor,
-        blend: 1,
-        amplitude: 1,
-        dispersion: 0,
-        chromatic: false,
-        scaleX: 1,
-        scaleY: 1,
-        inlay: false,
-        animated:
-        {
-            time:
+        [{
+            filterType: "xfire",
+            filterId: "meleeBurn",
+            autoDestroy: true,
+            time: 0,
+            color: fireColor,
+            blend: 1,
+            amplitude: 1,
+            dispersion: 0,
+            chromatic: false,
+            scaleX: 1,
+            scaleY: 1,
+            inlay: false,
+            animated:
             {
-                loopDuration: 500,
-                loops: 3,
-                active: true,
-                speed: -0.0015,
-                animType: "move"
+                time:
+                {
+                    loopDuration: 500,
+                    loops: 3,
+                    active: true,
+                    speed: -0.0015,
+                    animType: "move"
+                }
             }
-        }
-    }];
+        }];
     let globalDelay = game.settings.get("autoanimations", "globaldelay");
     await wait(globalDelay);
     async function cast() {
@@ -337,19 +337,10 @@ async function meleeWeapons(handler) {
                 game.socket.emit('module.fxmaster', effectData);
             }
 
-            let audioItem = handler.audioItem;
-            console.log(audioItem);
-            let audioDelay = handler.audioDelay;
-            console.log(audioDelay);
-            let audioVolume = handler.audioVolume;
-            console.log(audioVolume);
-
             switch (true) {
                 case distance <= range:
                     canvas.fxmaster.playVideo(meleeAnim);
                     game.socket.emit('module.fxmaster', meleeAnim);
-                    await wait(audioDelay);
-                    AudioHelper.play({src: audioItem, volume: audioVolume, autoplay: true, loop: false}, true);
                     break;
                 default:
                     function castSpell(effect) {
@@ -369,7 +360,7 @@ async function meleeWeapons(handler) {
                         },
                     });
                     await wait(delayAudio);
-                    AudioHelper.play({src: itemAudio, volume: 1.0, autoplay: true, loop: false}, true);
+                    AudioHelper.play({ src: itemAudio, volume: 1.0, autoplay: true, loop: false }, true);
             }
 
 
@@ -421,6 +412,10 @@ async function meleeWeapons(handler) {
         }
     }
     cast();
+    if (handler.audioEnabled) {
+        await wait(handler.audioDelay);
+        AudioHelper.play({ src: handler.audioItem, volume: handler.audioVolume, autoplay: true, loop: false }, true);
+    }
 }
 
 export default meleeWeapons;

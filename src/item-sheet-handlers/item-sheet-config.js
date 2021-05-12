@@ -164,18 +164,35 @@ export class AnimationTab {
         let uaStrikeType = this.html.find('.ua-strike-type');
         let teleport = this.html.find('.teleporting');
         let audioOptions = this.html.find('.item-audio');
+        let explodeAudio = this.html.find('.explode-audio');
+        let exCheckBox = this.html.find('.audio-ex-checkbox');
 
         let animName = this.animateItem.animName.toLowerCase();
         let override = this.animateItem.override;
         let animType = this.animateItem.animType;
         let explosion = this.animateItem.explosion;
         let audio = this.animateItem.enableAudio;
+        let exAudio = this.animateItem.audioExplodeEnabled;
+        let enableExplosion = this.animateItem.explosion;
 
-        if (audio === true) {
+        if(enableExplosion && override) {
+            exCheckBox.show();
+        } else {
+            exCheckBox.hide();
+        }
+
+        if (audio) {
             audioOptions.show();
         } else {
             audioOptions.hide();
         }
+
+        if (exAudio && override) {
+            explodeAudio.show()
+        } else {
+            explodeAudio.hide()
+        }
+
         if (animType === "t12" && override) {
             teleport.show();
         } else {
@@ -407,6 +424,21 @@ export class AnimationTab {
                 }
             });    
             fp.browse();
+        })
+
+        this.html.find('button[name="audio-ex-button"]').click(evt => {
+            const efp = new FilePicker({
+                //current: currentAudio,
+                type: "audio",
+                button: "audio-ex-picker",
+                //current: 'input[name="flags.automated-jb2a-animations.sounds.itemAudio"].value',
+                //field: currentAudio,
+                callback: (url) => {
+                    this.item.setFlag("autoanimations", "audioExplosion", url);
+                    this.activate = true;
+                }
+            });    
+            efp.browse();
         })
 
         /*
