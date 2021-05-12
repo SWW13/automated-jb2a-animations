@@ -26,6 +26,10 @@ export class AnimateItem {
         this.hmAnim = this.data.hmAnim;
         this.uaStrikeType = this.data.uaStrikeType;
         this.teleDist = this.data.teleDist;
+        this.enableAudio = this.data.enableAudio;
+        this.audioItem = this.data.audioItem;
+        this.audioDelay = this.data.audioDelay;
+        this.audioVolume = this.data.audioVolume;
         //this.flagObject = Object.assign({}, this.data);
     }
 
@@ -49,6 +53,10 @@ export class AnimateItem {
             hmAnim: ``,
             uaStrikeType: ``,
             teleDist: ``,
+            enableAudio: false,
+            audioItem: ``,
+            audioDelay: 0,
+            audioVolume: 0.5,
             //itemName = ``,
             //animTypeVar = ``,
         }
@@ -421,6 +429,18 @@ export class AnimateItem {
 
     get teleRange() {
         return this.teleDist || "30";
+    }
+
+    get newAudio() {
+        return this.audioItem;
+    }
+
+    get delayAudio() {
+        return this.audioDelay;
+    }
+
+    get volumeAudio() {
+        return this.audioVolume;
     }
     /*
     changeFlag(scope, key, value){

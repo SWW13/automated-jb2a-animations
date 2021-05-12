@@ -337,12 +337,19 @@ async function meleeWeapons(handler) {
                 game.socket.emit('module.fxmaster', effectData);
             }
 
-
+            let audioItem = handler.audioItem;
+            console.log(audioItem);
+            let audioDelay = handler.audioDelay;
+            console.log(audioDelay);
+            let audioVolume = handler.audioVolume;
+            console.log(audioVolume);
 
             switch (true) {
                 case distance <= range:
                     canvas.fxmaster.playVideo(meleeAnim);
                     game.socket.emit('module.fxmaster', meleeAnim);
+                    await wait(audioDelay);
+                    AudioHelper.play({src: audioItem, volume: audioVolume, autoplay: true, loop: false}, true);
                     break;
                 default:
                     function castSpell(effect) {
@@ -361,7 +368,8 @@ async function meleeWeapons(handler) {
                             y: (Scale * plusOrMinus),
                         },
                     });
-
+                    await wait(delayAudio);
+                    AudioHelper.play({src: itemAudio, volume: 1.0, autoplay: true, loop: false}, true);
             }
 
 

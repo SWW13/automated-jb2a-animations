@@ -32,6 +32,9 @@ export default class MidiHandler {
         this._hmAnim = this._flags.hmAnim ?? "";
         this._uaStrikeType = this._flags.uaStrikeType ?? "";
         this._teleDist = this._flags.teleDist ?? "";
+        this._audioItem = this._flags.audioItem ?? "";
+        this._audioDelay = this._flags.audioDelay ?? 0;
+        this._audioVolume = this._flags.audioVolume ?? 0.5;
 
         this._checkSave = Array.from(workflow.saves);
         this._savesId = Array.from(this._checkSave.filter(actor => actor.id).map(actor => actor.id));
@@ -219,6 +222,18 @@ export default class MidiHandler {
 
     get teleRange() {
         return this._teleDist;
+    }
+
+    get audioItem() {
+        return this._audioItem;
+    }
+
+    get audioDelay() {
+        return this._audioDelay;
+    }
+
+    get audioVolume() {
+        return this._audioVolume;
     }
 
     getDistanceTo(target) {

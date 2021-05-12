@@ -163,12 +163,19 @@ export class AnimationTab {
         let ctaRequired = this.html.find('.cta-required');
         let uaStrikeType = this.html.find('.ua-strike-type');
         let teleport = this.html.find('.teleporting');
+        let audioOptions = this.html.find('.item-audio');
 
         let animName = this.animateItem.animName.toLowerCase();
         let override = this.animateItem.override;
         let animType = this.animateItem.animType;
         let explosion = this.animateItem.explosion;
+        let audio = this.animateItem.enableAudio;
 
+        if (audio === true) {
+            audioOptions.show();
+        } else {
+            audioOptions.hide();
+        }
         if (animType === "t12" && override) {
             teleport.show();
         } else {
@@ -362,6 +369,10 @@ export class AnimationTab {
             this.activate = true;
         });
 
+        this.html.find('.audio-checkbox input[type="checkbox"]').change(evt => {
+            this.activate = true;
+        });
+
         this.html.find('.animation-tab-contents select').change(evt => {
             this.activate = true;
         });
@@ -374,10 +385,29 @@ export class AnimationTab {
             this.activate = true;
         });
 
+        this.html.find('.item-audio input[type="number"]').change(evt => {
+            this.activate = true;
+        });
+
         this.html.find('input[name="flags.autoanimations.ctaOption"]').click(evt => {
             //this.animateItem.toggleEnabled(evt.target.unchecked);
             this.activate = true;
         });
+
+        this.html.find('button[name="audio-button"]').click(evt => {
+            const fp = new FilePicker({
+                //current: currentAudio,
+                type: "audio",
+                button: "audio-picker",
+                //current: 'input[name="flags.automated-jb2a-animations.sounds.itemAudio"].value',
+                //field: currentAudio,
+                callback: (url) => {
+                    this.item.setFlag("autoanimations", "audioItem", url);
+                    this.activate = true;
+                }
+            });    
+            fp.browse();
+        })
 
         /*
         this.html.find('input[name="flags.autoanimations.killAnim"]').click(evt => {
