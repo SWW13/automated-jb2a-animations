@@ -1,3 +1,5 @@
+This is the last version fully compatible with 0.7.9 - All releases past this point will be geared towards 0.8
+
 ## NOTE: Use of the Source Field (in DnD 5e) has been phased out  
 
 # Automated Animations
